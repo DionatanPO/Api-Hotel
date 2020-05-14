@@ -6,6 +6,7 @@
 package com.example.Api_hotel.model;
 
 import java.sql.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Reserva {
     private Date data_entrada;
     private Date data_saida;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "hospede_id")
     private Hospede hospede;
 
@@ -44,6 +46,7 @@ public class Reserva {
     public Reserva() {
     }
 
+    
     public Funcionario getFuncionario() {
         return funcionario;
     }
