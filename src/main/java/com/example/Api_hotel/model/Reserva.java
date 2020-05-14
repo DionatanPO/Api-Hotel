@@ -6,19 +6,66 @@
 package com.example.Api_hotel.model;
 
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Dionatan
  */
+@Entity
 public class Reserva {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date  data_entrada;
-    private Date  data_saida;
+
+    private Date data_entrada;
+    private Date data_saida;
+
+    @JoinColumn(name = "hospede_id")
     private Hospede hospede;
+
+    @OneToOne()
+    @JoinColumn(name = "apartamento_id")
     private Apartamento apartamento;
 
+    @OneToOne()
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    private String estado;
+    private int n_pessoas;
+
     public Reserva() {
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public int getN_pessoas() {
+        return n_pessoas;
+    }
+
+    public void setN_pessoas(int n_pessoas) {
+        this.n_pessoas = n_pessoas;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Long getId() {
@@ -60,6 +107,5 @@ public class Reserva {
     public void setApartamento(Apartamento apartamento) {
         this.apartamento = apartamento;
     }
-    
-    
+
 }
