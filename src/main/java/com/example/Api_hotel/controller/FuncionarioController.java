@@ -77,5 +77,16 @@ public class FuncionarioController {
 
         return new ResponseEntity<>(funcionarioList, HttpStatus.OK);
     }
+    
+       @PostMapping(value = "login")
+    public ResponseEntity<Funcionario> buscaCodidentificacao(@RequestBody Funcionario funcionario) {
+       Funcionario f;
+         f = Usuario.produtorTouser(authenticateService.authenticate(funcionario), "Bearer");
+        if(f!=null){
+            produtorService.salvar(f);
+               p.setSenha("");
+        }
+        return new ResponseEntity<>(p, HttpStatus.OK);
+    }
 
 }

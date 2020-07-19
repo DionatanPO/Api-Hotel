@@ -5,25 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
 public class Funcionario {
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String estado;
     private String cpf;
     private String nome;
-    private String email;
+    private String Codidentificacao;
     private String senha;
     private String cargo;
 
     public Funcionario() {
     }
-
-
 
     public String getEstado() {
         return estado;
@@ -33,7 +29,6 @@ public class Funcionario {
         this.estado = estado;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -50,8 +45,6 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
- 
-
     public String getNome() {
         return nome;
     }
@@ -60,12 +53,12 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCodidentificacao() {
+        return Codidentificacao;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCodidentificacao(String Codidentificacao) {
+        this.Codidentificacao = Codidentificacao;
     }
 
     public String getSenha() {
@@ -86,8 +79,8 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "nome='" + nome + '\'' +
-                '}';
+        return "Funcionario{"
+                + "nome='" + nome + '\''
+                + '}';
     }
 }

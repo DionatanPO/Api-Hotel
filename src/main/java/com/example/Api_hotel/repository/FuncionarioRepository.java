@@ -12,4 +12,5 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 
     List<Funcionario> findByEstadoNot(String estado);
 
+    Funcionario findByCodidentificacao(String codidentificacao);
 }

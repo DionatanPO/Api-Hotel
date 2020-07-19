@@ -39,4 +39,8 @@ public class FuncionarioService {
         String estado = "Desabilitado";
         return funcionarioRepository.findByEstadoNot(estado);
     }
+    
+        public Funcionario buscaPorCodiidentificacao(String codidentificacao) throws Exception {
+        return funcionarioRepository.findByCodidentificacao(codidentificacao);
+    }
 }
