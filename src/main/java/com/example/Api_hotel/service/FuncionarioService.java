@@ -35,12 +35,14 @@ public class FuncionarioService {
         return funcionarioRepository.findByNomeContaining(funcionario.getNome());
     }
 
-    public List buscarEstadoAtivo() {
-        String estado = "Desabilitado";
-        return funcionarioRepository.findByEstadoNot(estado);
+    public List buscarEstadoAtivo(Funcionario f) {
+        Long i = f.getAdministrador_id();
+        String estado = "Abilitado";
+        return funcionarioRepository.findFuncionarioByEstadoAndAdministrador(estado, i);
+
     }
-    
-        public Funcionario buscaPorCodiidentificacao(String codidentificacao) throws Exception {
+
+    public Funcionario buscaPorCodiidentificacao(String codidentificacao) throws Exception {
         return funcionarioRepository.findByCodidentificacao(codidentificacao);
     }
 }

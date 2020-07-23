@@ -77,15 +77,13 @@ public class HospedagemController {
 //
 //        return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
 //    }
-    
-//        @GetMapping(value = "estado/")
-//    @ResponseBody
-//    public ResponseEntity<List<Hospedagem>> buscaEstado(@RequestParam String estado) {
-//        Hospedagem hospedagem = new Hospedagem();
-//        hospedagem.setEstado(estado);
-//        List hospedagemList = hospedagemService.buscarEstado(hospedagem.getEstado());
-//
-//        return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
-//    }
+    @GetMapping(value = "todas/{gerente_id}")
+    @ResponseBody
+    public ResponseEntity<List<Hospedagem>> buscaEstado(@PathVariable Long gerente_id) {
+       
+        List hospedagemList = hospedagemService.buscarGerente(gerente_id);
+
+        return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
+    }
 
 }

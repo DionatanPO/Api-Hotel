@@ -30,11 +30,12 @@ public class AuthenticateService {
     }
 
     public Funcionario authenticate(Funcionario f) {
-        Funcionario funcionario;
+        Funcionario funcionario = new Funcionario();
         try {
            funcionario = funcionarioService.buscaPorCodiidentificacao(f.getCodidentificacao());
         } catch (Exception e) {
-            funcionario = new Funcionario();
+                System.out.println(e);
+          
         }
 
         if (f.getSenha().equals(funcionario.getSenha())) {
@@ -42,7 +43,7 @@ public class AuthenticateService {
             funcionario.setToken(tokenGerado);
             return funcionario;
         } else {
-            return funcionario;
+            return f;
         }
 
     }

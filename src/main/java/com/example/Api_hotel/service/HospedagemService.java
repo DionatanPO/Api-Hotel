@@ -38,10 +38,10 @@ public class HospedagemService {
         String estado = "Desabilitado";
         return hospedagemRepository.findByEstadoNot(estado);
     }
-//    
-//     //buscar todos por estado
-//    public List buscarEstado(String estado) {
-//  
-//        return hospedagemRepository.findByEstado(estado);
-//    }
+    
+     //buscar todos por gerente e abilitadas
+    public List buscarGerente(Long gerente_id) {
+  
+        return hospedagemRepository.buscarHospedagem(gerente_id);
+    }
 }

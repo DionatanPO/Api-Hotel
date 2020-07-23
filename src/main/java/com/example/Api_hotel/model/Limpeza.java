@@ -18,7 +18,7 @@ public class Limpeza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long l_id;
 
     @OneToOne()
     @JoinColumn(name = "funcionario_id")
@@ -26,19 +26,21 @@ public class Limpeza {
     
     
     @OneToOne()
-    @JoinColumn(name = "limpeza_id")
+    @JoinColumn(name = "apartamento_id")
     private Apartamento apartamento;
 
     public Limpeza() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getL_id() {
+        return l_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setL_id(Long l_id) {
+        this.l_id = l_id;
     }
+
+
 
     public Apartamento getApartamento() {
         return apartamento;

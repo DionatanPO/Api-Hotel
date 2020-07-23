@@ -1,6 +1,7 @@
 package com.example.Api_hotel.controller;
 
 
+import com.example.Api_hotel.model.Apartamento;
 import com.example.Api_hotel.model.Limpeza;
 import com.example.Api_hotel.service.LimpezaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,20 +39,14 @@ public class LimpezaController {
     public ResponseEntity deletar(@PathVariable Long id) {
 
         Limpeza limpeza = new Limpeza();
-        limpeza.setId(id);
+        limpeza.setL_id(id);
         limpezaService.delete(limpeza);
 
         return ResponseEntity.ok().build();
 
     }
 
-    @GetMapping(value = "todos")
-    public ResponseEntity<List<Limpeza>> mostrarTodos() {
 
-        List limpezaList = limpezaService.buscarTodos();
-
-        return new ResponseEntity<List<Limpeza>>(limpezaList, HttpStatus.OK);
-    }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Limpeza> buscaPorID(@PathVariable Long id) {
@@ -62,7 +57,13 @@ public class LimpezaController {
         }
     }
     
-   
+     @GetMapping(value = "todos/{id}")
+    @ResponseBody
+    public ResponseEntity<List<Apartamento>> buscaEstado(@PathVariable Long id) {
+
+        List apartamentoList = limpezaService.buscarTodos(id);
+        return new ResponseEntity<List<Apartamento>>(apartamentoList, HttpStatus.OK);
+    }
  
 
 }

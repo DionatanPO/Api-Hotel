@@ -1,6 +1,8 @@
 package com.example.Api_hotel.controller;
 
 import com.example.Api_hotel.model.Funcionario;
+import com.example.Api_hotel.model.Usuario;
+import com.example.Api_hotel.service.AuthenticateService;
 import com.example.Api_hotel.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class FuncionarioController {
     @Autowired
     FuncionarioService funcionarioService;
 
+    @Autowired
+    AuthenticateService authenticateService;
+
     @PostMapping()
     public ResponseEntity<Funcionario> cadastrar(@RequestBody Funcionario fum) {
 
@@ -25,8 +30,11 @@ public class FuncionarioController {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<Funcionario> editar(@RequestBody Funcionario fum) {
-
+    public ResponseEntity<Funcionario> editar(@RequestBody Funcionario fum) throws Exception {
+        if (fum.getSenha().equals("")) {
+            Funcionario f2 = funcionarioService.buscaPorID(fum.getId());
+            fum.setSenha(f2.getSenha());
+        }
         Funcionario funcionarioSalvo = funcionarioService.salvar(fum);
 
         return ResponseEntity.ok(funcionarioSalvo);
@@ -50,14 +58,16 @@ public class FuncionarioController {
 
         return new ResponseEntity<>(funcionarioList, HttpStatus.OK);
     }
-      @GetMapping(value = "todosAtivos")
-    public ResponseEntity<List<Funcionario>> mostrarTodosAtivos() {
 
-        List apartamentoList = funcionarioService.buscarEstadoAtivo();
+    @GetMapping(value = "todosAtivos/{id}")
+    public ResponseEntity<List<Funcionario>> mostrarTodosAtivos(@PathVariable Long id) {
+        Funcionario f = new Funcionario();
+        f.setAdministrador_id(id);
 
-        return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
+        List funcionarios = funcionarioService.buscarEstadoAtivo(f);
+        System.out.println(funcionarios.size());
+        return new ResponseEntity<>(funcionarios, HttpStatus.OK);
     }
-
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Funcionario> buscaPorID(@PathVariable Long id) {
@@ -77,16 +87,15 @@ public class FuncionarioController {
 
         return new ResponseEntity<>(funcionarioList, HttpStatus.OK);
     }
-    
-       @PostMapping(value = "login")
+
+    @PostMapping(value = "login")
     public ResponseEntity<Funcionario> buscaCodidentificacao(@RequestBody Funcionario funcionario) {
-       Funcionario f;
-         f = Usuario.produtorTouser(authenticateService.authenticate(funcionario), "Bearer");
-        if(f!=null){
-            produtorService.salvar(f);
-               p.setSenha("");
+        Funcionario f;
+        f = Usuario.funcionarioTouser(authenticateService.authenticate(funcionario), "Bearer");
+        if (f != null) {
+            f.setSenha("");
         }
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        return new ResponseEntity<>(f, HttpStatus.OK);
     }
 
 }

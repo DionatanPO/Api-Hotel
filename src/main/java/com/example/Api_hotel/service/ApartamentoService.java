@@ -41,9 +41,9 @@ public class ApartamentoService {
         return apartamentoRepository.findByEstadoNot(estado);
     }
     
-     //buscar todos por estado
-    public List buscarEstado(String estado) {
-  
-        return apartamentoRepository.findByEstado(estado);
+     //buscar todos por gerente
+    public List buscarEstado(Long id) {
+ 
+        return apartamentoRepository.buscarApartamentos(id);
     }
 }

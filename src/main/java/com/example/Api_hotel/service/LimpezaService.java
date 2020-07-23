@@ -1,6 +1,8 @@
 package com.example.Api_hotel.service;
 
+import com.example.Api_hotel.model.Apartamento;
 import com.example.Api_hotel.model.Limpeza;
+import com.example.Api_hotel.repository.ApartamentoRepository;
 import com.example.Api_hotel.repository.LimpezaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ public class LimpezaService {
 
     @Autowired
     LimpezaRepository limpezaRepository;
+
+    @Autowired
+    ApartamentoRepository apartamentoRepository;
 
     public Limpeza salvar(Limpeza limpeza) {
         //validações e etcS
@@ -27,8 +32,8 @@ public class LimpezaService {
         return limpezaRepository.findById(id).orElseThrow(Exception::new);
     }
 
-    public List buscarTodos() {
-        return limpezaRepository.findAll();
+    public List<Apartamento> buscarTodos(Long id) {
+        return apartamentoRepository.buscarApartamentosSujo(id);
     }
 
 }

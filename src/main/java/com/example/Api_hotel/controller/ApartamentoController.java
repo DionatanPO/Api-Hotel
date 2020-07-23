@@ -77,14 +77,12 @@ public class ApartamentoController {
 
         return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
     }
-    
-        @GetMapping(value = "estado/")
-    @ResponseBody
-    public ResponseEntity<List<Apartamento>> buscaEstado(@RequestParam String estado) {
-        Apartamento ap = new Apartamento();
-        ap.setEstado(estado);
-        List apartamentoList = apartamentoService.buscarEstado(ap.getEstado());
 
+    @GetMapping(value = "todos/{id}")
+    @ResponseBody
+    public ResponseEntity<List<Apartamento>> buscaEstado(@PathVariable Long id) {
+
+        List apartamentoList = apartamentoService.buscarEstado(id);
         return new ResponseEntity<List<Apartamento>>(apartamentoList, HttpStatus.OK);
     }
 

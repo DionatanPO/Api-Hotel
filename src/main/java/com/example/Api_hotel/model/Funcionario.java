@@ -14,11 +14,29 @@ public class Funcionario {
     private String estado;
     private String cpf;
     private String nome;
-    private String Codidentificacao;
+    private String codidentificacao;
     private String senha;
     private String cargo;
+    private String token;
+       private Long administrador_id;
 
     public Funcionario() {
+    }
+
+    public Long getAdministrador_id() {
+        return administrador_id;
+    }
+
+    public void setAdministrador_id(Long administrador_id) {
+        this.administrador_id = administrador_id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getEstado() {
@@ -54,12 +72,14 @@ public class Funcionario {
     }
 
     public String getCodidentificacao() {
-        return Codidentificacao;
+        return codidentificacao;
     }
 
-    public void setCodidentificacao(String Codidentificacao) {
-        this.Codidentificacao = Codidentificacao;
+    public void setCodidentificacao(String codidentificacao) {
+        this.codidentificacao = codidentificacao;
     }
+
+
 
     public String getSenha() {
         return senha;
