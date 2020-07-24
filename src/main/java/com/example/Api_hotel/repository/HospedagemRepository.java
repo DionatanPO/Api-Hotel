@@ -18,7 +18,7 @@ public interface HospedagemRepository extends JpaRepository<Hospedagem, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "SELECT * from Hospedagem INNER JOIN Funcionario ON  Funcionario.administrador_id=?1 AND Hospedagem.estado='Abilitado'  GROUP BY funcionario_id", nativeQuery = true)
+    @Query(value = "SELECT * from Hospedagem INNER JOIN Funcionario ON  Funcionario.administrador_id=?1 AND Hospedagem.estado!='Desabilitado'  GROUP BY funcionario_id", nativeQuery = true)
     List<Hospedagem> buscarHospedagem(Long i);
 
 }

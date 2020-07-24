@@ -1,16 +1,15 @@
 package com.example.Api_hotel.controller;
 
-
 import com.example.Api_hotel.model.Apartamento;
 import com.example.Api_hotel.model.Limpeza;
 import com.example.Api_hotel.service.LimpezaService;
+import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping(value = "/limpeza/")
@@ -46,8 +45,6 @@ public class LimpezaController {
 
     }
 
-
-
     @GetMapping(value = "{id}")
     public ResponseEntity<Limpeza> buscaPorID(@PathVariable Long id) {
         try {
@@ -56,14 +53,20 @@ public class LimpezaController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-     @GetMapping(value = "todos/{id}")
+
+    @GetMapping(value = "todos/{id}")
     @ResponseBody
     public ResponseEntity<List<Apartamento>> buscaEstado(@PathVariable Long id) {
 
         List apartamentoList = limpezaService.buscarTodos(id);
         return new ResponseEntity<List<Apartamento>>(apartamentoList, HttpStatus.OK);
     }
- 
 
+    @GetMapping(value = "todosData/{id}/{data}")
+    @ResponseBody
+    public ResponseEntity<List<Limpeza>> buscaLimpezasPorData(@PathVariable Long id, @PathVariable String data) throws ParseException {
+
+        List limpezaList = limpezaService.buscarTodosDia(id,data);
+        return new ResponseEntity<List<Limpeza>>(limpezaList, HttpStatus.OK);
+    }
 }

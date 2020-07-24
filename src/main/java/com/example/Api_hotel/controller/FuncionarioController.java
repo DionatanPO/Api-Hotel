@@ -25,6 +25,11 @@ public class FuncionarioController {
     public ResponseEntity<Funcionario> cadastrar(@RequestBody Funcionario fum) {
 
         Funcionario funcionarioSalvo = funcionarioService.salvar(fum);
+        if (fum.getCargo().equals("Administrador")) {
+            funcionarioSalvo.setAdministrador_id(funcionarioSalvo.getId());
+
+            funcionarioSalvo = funcionarioService.salvar(funcionarioSalvo);
+        }
 
         return new ResponseEntity<>(funcionarioSalvo, HttpStatus.CREATED);
     }

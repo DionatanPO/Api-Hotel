@@ -14,7 +14,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 
     @Modifying
     @Transactional
-    @Query(value = "SELECT * FROM Funcionario f WHERE f.estado=?1 AND f.administrador_id=?2", nativeQuery = true)
+    @Query(value = "SELECT * FROM Funcionario f WHERE f.estado=?1 AND f.administrador_id=?2 AND f.id !=f.administrador_id", nativeQuery = true)
     List<Funcionario> findFuncionarioByEstadoAndAdministrador(String estado, Long i);
 
     List<Funcionario> findByNomeContaining(String nome);
