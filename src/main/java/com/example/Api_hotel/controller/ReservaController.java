@@ -51,10 +51,10 @@ public class ReservaController {
         return new ResponseEntity<>(reservaList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "todosAtivos")
-    public ResponseEntity<List<Reserva>> mostrarTodosAtivos() {
+    @GetMapping(value = "todosAtivos/{id}")
+    public ResponseEntity<List<Reserva>> mostrarTodosAtivos(@PathVariable Long id) {
 
-        List reservaList = reservaService.buscarEstadoAtivo();
+        List reservaList = reservaService.buscarEstadoAtivo(id);
 
         return new ResponseEntity<>(reservaList, HttpStatus.OK);
     }
@@ -68,24 +68,5 @@ public class ReservaController {
         }
     }
 
-//    @GetMapping(value = "identificacao/")
-//    @ResponseBody
-//    public ResponseEntity<List<Reserva>> buscaNome(@RequestParam String identificacao) {
-//        Reserva reserva = new Reserva();
-//        reserva.setIdentificacao(identificacao);
-//        List reservaList = reservaService.buscarIdentificacao(reserva);
-//
-//        return new ResponseEntity<>(reservaList, HttpStatus.OK);
-//    }
-    
-//        @GetMapping(value = "estado/")
-//    @ResponseBody
-//    public ResponseEntity<List<Reserva>> buscaEstado(@RequestParam String estado) {
-//        Reserva reserva = new Reserva();
-//        reserva.setEstado(estado);
-//        List reservaList = reservaService.buscarEstado(reserva.getEstado());
-//
-//        return new ResponseEntity<>(reservaList, HttpStatus.OK);
-//    }
 
 }

@@ -51,10 +51,10 @@ public class ApartamentoController {
         return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "todosAtivos")
-    public ResponseEntity<List<Apartamento>> mostrarTodosAtivos() {
+    @GetMapping(value = "todosDisponivel/{id}")
+    public ResponseEntity<List<Apartamento>> mostrarTodosAtivos(@PathVariable Long id) {
 
-        List apartamentoList = apartamentoService.buscarEstadoAtivo();
+        List apartamentoList = apartamentoService.buscarDisponiveis(id);
 
         return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
     }

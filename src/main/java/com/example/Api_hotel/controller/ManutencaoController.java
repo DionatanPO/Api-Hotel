@@ -51,10 +51,10 @@ public class ManutencaoController {
         return new ResponseEntity<>(manutencaoList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "todosAtivos")
-    public ResponseEntity<List<Manutencao>> mostrarTodosAtivos() {
+    @GetMapping(value = "todosAtivos/{id}")
+    public ResponseEntity<List<Manutencao>> mostrarTodosAtivos(@PathVariable Long id) {
 
-        List manutencaoList = manutencaoService.buscarEstadoAtivo();
+        List manutencaoList = manutencaoService.buscarEstadoAtivo(id);
 
         return new ResponseEntity<>(manutencaoList, HttpStatus.OK);
     }
@@ -67,25 +67,4 @@ public class ManutencaoController {
             return ResponseEntity.notFound().build();
         }
     }
-
-//    @GetMapping(value = "identificacao/")
-//    @ResponseBody
-//    public ResponseEntity<List<Manutencao>> buscaNome(@RequestParam String identificacao) {
-//        Manutencao manutencao = new Manutencao();
-//        manutencao.setIdentificacao(identificacao);
-//        List manutencaoList = manutencaoService.buscarIdentificacao(manutencao);
-//
-//        return new ResponseEntity<>(manutencaoList, HttpStatus.OK);
-//    }
-    
-//        @GetMapping(value = "estado/")
-//    @ResponseBody
-//    public ResponseEntity<List<Manutencao>> buscaEstado(@RequestParam String estado) {
-//        Manutencao manutencao = new Manutencao();
-//        manutencao.setEstado(estado);
-//        List manutencaoList = manutencaoService.buscarEstado(manutencao.getEstado());
-//
-//        return new ResponseEntity<>(manutencaoList, HttpStatus.OK);
-//    }
-
 }

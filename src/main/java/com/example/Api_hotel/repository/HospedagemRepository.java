@@ -11,14 +11,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HospedagemRepository extends JpaRepository<Hospedagem, Long> {
 
-//    List<Hospedagem> findByIdentificacaoContaining(String identifica);
     List<Hospedagem> findByEstadoNot(String estado);
-//   List<Hospedagem> findByEstado(String estado);
-//    SELECT * FROM Funcionario f WHERE f.estado=?1 AND f.administrador_id=?2
 
     @Modifying
     @Transactional
-    @Query(value = "SELECT * from Hospedagem INNER JOIN Funcionario ON  Funcionario.administrador_id=?1 AND Hospedagem.estado!='Desabilitado'  GROUP BY funcionario_id", nativeQuery = true)
+    @Query(value = "SELECT * from Hospedagem INNER JOIN Funcionario ON  Funcionario.administrador_id=?1 AND Hospedagem.estado!='Desabilitado' "
+            + "AND Hospedagem.estado!='Concluido' GROUP BY funcionario_id", nativeQuery = true)
     List<Hospedagem> buscarHospedagem(Long i);
 
 }

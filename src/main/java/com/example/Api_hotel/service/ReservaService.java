@@ -33,14 +33,9 @@ public class ReservaService {
 
 
     //buscar todos menos os desativados
-    public List buscarEstadoAtivo() {
-        String estado = "Desabilitado";
-        return reservaRepository.findByEstadoNot(estado);
+    public List buscarEstadoAtivo(Long id) {
+      
+        return reservaRepository.buscarReservas(id);
     }
-//    
-//     //buscar todos por estado
-//    public List buscarEstado(String estado) {
-//  
-//        return reservaRepository.findByEstado(estado);
-//    }
+
 }

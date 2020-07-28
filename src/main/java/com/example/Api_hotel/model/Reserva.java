@@ -42,8 +42,18 @@ public class Reserva {
 
     private String estado;
     private int n_pessoas;
+    private float valor;
+    
 
     public Reserva() {
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     

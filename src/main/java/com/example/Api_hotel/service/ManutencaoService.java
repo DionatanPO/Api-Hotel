@@ -32,15 +32,10 @@ public class ManutencaoService {
     }
 
 
-    //buscar todos menos os desativados
-    public List buscarEstadoAtivo() {
+  
+    public List buscarEstadoAtivo(Long id) {
         String estado = "Desabilitado";
-        return manutencaoRepository.findByEstadoNot(estado);
+        return manutencaoRepository.buscarManutencao(id);
     }
-//    
-//     //buscar todos por estado
-//    public List buscarEstado(String estado) {
-//  
-//        return manutencaoRepository.findByEstado(estado);
-//    }
+
 }

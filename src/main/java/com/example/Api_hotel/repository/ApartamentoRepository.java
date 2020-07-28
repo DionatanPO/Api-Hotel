@@ -21,6 +21,11 @@ public interface ApartamentoRepository extends JpaRepository<Apartamento, Long> 
     @Transactional
     @Query(value = "SELECT * from Apartamento where funcionario_id=?1 and estado !='Desabilitado'", nativeQuery = true)
     List<Apartamento> buscarApartamentos(Long i);
+    
+    @Modifying
+    @Transactional
+    @Query(value = "SELECT * from Apartamento where funcionario_id=?1 and estado ='Disponível'", nativeQuery = true)
+    List<Apartamento> buscarApartamentosDisponivel(Long i);
 
     @Modifying
     @Transactional

@@ -49,7 +49,7 @@ public class DownloadExcelController {
         List<Hospedagem> hospedagems = new ArrayList<>();
 
         try {
-            apartamentos = apartamentoService.buscarEstadoAtivo();
+            apartamentos = apartamentoService.buscarEstado(id);
            hospedagems = hospedagemService.buscarEstadoAtivo();
 
         } catch (Exception e) {

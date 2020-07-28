@@ -36,9 +36,9 @@ public class ApartamentoService {
     }
 
     //buscar todos menos os desativados
-    public List buscarEstadoAtivo() {
-        String estado = "Desabilitado";
-        return apartamentoRepository.findByEstadoNot(estado);
+    public List buscarDisponiveis(Long id) {
+      
+        return apartamentoRepository.buscarApartamentosDisponivel(id);
     }
     
      //buscar todos por gerente
