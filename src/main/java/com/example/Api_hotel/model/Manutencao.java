@@ -25,7 +25,7 @@ public class Manutencao {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
-    private String descricao;
+    private String observacao;
 
     @OneToOne()
     @JoinColumn(name = "apartamento_id")
@@ -59,13 +59,15 @@ public class Manutencao {
         this.funcionario = funcionario;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
+
+
 
     public Apartamento getApartamento() {
         return apartamento;

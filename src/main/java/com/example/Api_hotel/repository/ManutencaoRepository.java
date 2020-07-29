@@ -15,7 +15,7 @@ public interface ManutencaoRepository extends JpaRepository<Manutencao, Long> {
     @Modifying
     @Transactional
     @Query(value = "SELECT * from Manutencao INNER JOIN Funcionario ON  Funcionario.administrador_id=?1 AND Manutencao.estado!='Desabilitado'"
-            + "GROUP BY funcionario.id", nativeQuery = true)
+            + " AND manutencao.funcionario_id = funcionario.id", nativeQuery = true)
     List<Manutencao> buscarManutencao(Long i);
 
 }
