@@ -44,4 +44,8 @@ public class HospedagemService {
   
         return hospedagemRepository.buscarHospedagem(gerente_id);
     }
+       public List buscarEntreDatas(Long gerente_id, String data1, String data2) {
+  
+        return hospedagemRepository.buscarHospedagemEntreDatas(gerente_id,data1, data2);
+    }
 }

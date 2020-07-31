@@ -2,6 +2,10 @@ package com.example.Api_hotel.controller;
 
 import com.example.Api_hotel.model.Hospedagem;
 import com.example.Api_hotel.service.HospedagemService;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,22 +72,23 @@ public class HospedagemController {
         }
     }
 
-//    @GetMapping(value = "identificacao/")
-//    @ResponseBody
-//    public ResponseEntity<List<Hospedagem>> buscaNome(@RequestParam String identificacao) {
-//        Hospedagem hospedagem = new Hospedagem();
-//        hospedagem.setIdentificacao(identificacao);
-//        List hospedagemList = hospedagemService.buscarIdentificacao(hospedagem);
-//
-//        return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
-//    }
     @GetMapping(value = "todas/{gerente_id}")
     @ResponseBody
     public ResponseEntity<List<Hospedagem>> buscaEstado(@PathVariable Long gerente_id) {
-       
+
         List hospedagemList = hospedagemService.buscarGerente(gerente_id);
 
         return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
     }
 
+    @GetMapping(value = "todosData/{gerente_id}/{data1}/{data2}")
+    @ResponseBody
+    public ResponseEntity<List<Hospedagem>> buscaEstado(@PathVariable Long gerente_id, @PathVariable Date data1, @PathVariable Date data2) throws ParseException {
+
+       
+        
+        List hospedagemList = hospedagemService.buscarEntreDatas(gerente_id, data1.toString(), data2.toString());
+
+        return new ResponseEntity<>(hospedagemList, HttpStatus.OK);
+    }
 }
