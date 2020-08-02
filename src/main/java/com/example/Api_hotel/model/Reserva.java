@@ -27,7 +27,12 @@ public class Reserva {
 
     private Date data_entrada;
     private Date data_saida;
+    
+    @OneToOne()
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
+    
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "hospede_id")
     private Hospede hospede;
@@ -46,6 +51,14 @@ public class Reserva {
     
 
     public Reserva() {
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
     public float getValor() {

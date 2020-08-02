@@ -41,6 +41,11 @@ public class ApartamentoService {
         return apartamentoRepository.buscarApartamentosDisponivel(id);
     }
     
+    public List buscarDisponiveisPorHotel(Long id) {
+      
+        return apartamentoRepository.buscarApartamentosDisponivelPorHotel(id);
+    }
+    
      //buscar todos por gerente
     public List buscarEstado(Long id) {
  

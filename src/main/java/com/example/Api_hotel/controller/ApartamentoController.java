@@ -58,6 +58,14 @@ public class ApartamentoController {
 
         return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
     }
+    
+       @GetMapping(value = "todosDisponivelPorHotel/{id}")
+    public ResponseEntity<List<Apartamento>> mostrarTodosPorHotel(@PathVariable Long id) {
+
+        List apartamentoList = apartamentoService.buscarDisponiveisPorHotel(id);
+
+        return new ResponseEntity<>(apartamentoList, HttpStatus.OK);
+    }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<Apartamento> buscaPorID(@PathVariable Long id) {

@@ -1,37 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.example.Api_hotel.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
+
+/**
+ *
+ * @author Dionatan
+ */
 @Entity
-public class Hospede {
+public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
-    private String cpf;
+    private String endereco;
     private String telefone;
-    @OneToOne()
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
-
-    public Hospede() {
-
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
+    
+     
 
     public Long getId() {
         return id;
@@ -49,12 +43,12 @@ public class Hospede {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -64,5 +58,6 @@ public class Hospede {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
+    
+    
 }

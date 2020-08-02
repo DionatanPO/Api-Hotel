@@ -1,6 +1,7 @@
 package com.example.Api_hotel.controller;
 
 import com.example.Api_hotel.model.Funcionario;
+import com.example.Api_hotel.model.Hotel;
 import com.example.Api_hotel.model.Usuario;
 import com.example.Api_hotel.service.AuthenticateService;
 import com.example.Api_hotel.service.FuncionarioService;
@@ -27,6 +28,13 @@ public class FuncionarioController {
         Funcionario funcionarioSalvo = funcionarioService.salvar(fum);
         if (fum.getCargo().equals("Administrador")) {
             funcionarioSalvo.setAdministrador_id(funcionarioSalvo.getId());
+         
+            funcionarioSalvo = funcionarioService.salvar(funcionarioSalvo);
+        }else{
+            Hotel hotel = new Hotel();
+            hotel.setId(funcionarioSalvo.getAdministrador_id());
+            
+            funcionarioSalvo.setHotel(hotel);
 
             funcionarioSalvo = funcionarioService.salvar(funcionarioSalvo);
         }

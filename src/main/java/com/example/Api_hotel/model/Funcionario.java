@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Funcionario {
@@ -14,14 +16,29 @@ public class Funcionario {
     private String estado;
     private String cpf;
     private String nome;
+
     private String codidentificacao;
     private String senha;
     private String cargo;
     private String token;
-       private Long administrador_id;
+    private Long administrador_id;
+
+    @OneToOne()
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     public Funcionario() {
     }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+ 
 
     public Long getAdministrador_id() {
         return administrador_id;
@@ -78,8 +95,6 @@ public class Funcionario {
     public void setCodidentificacao(String codidentificacao) {
         this.codidentificacao = codidentificacao;
     }
-
-
 
     public String getSenha() {
         return senha;

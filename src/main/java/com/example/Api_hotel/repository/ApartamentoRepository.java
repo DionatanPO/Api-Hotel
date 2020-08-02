@@ -32,4 +32,10 @@ public interface ApartamentoRepository extends JpaRepository<Apartamento, Long> 
     @Query(value = "SELECT * from Apartamento WHERE funcionario_id =?1 AND estado='Sujo'", nativeQuery = true)
     List<Apartamento> buscarApartamentosSujo(Long i);
 
+    
+     @Modifying
+    @Transactional
+    @Query(value = "SELECT * from  apartamento inner join funcionario on funcionario.hotel_id = ?1  \n" +
+"and Funcionario.id= apartamento.funcionario_id and apartamento.estado= 'Disponível'", nativeQuery = true)
+    List<Apartamento> buscarApartamentosDisponivelPorHotel(Long i);
 }
