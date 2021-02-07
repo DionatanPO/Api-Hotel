@@ -39,7 +39,7 @@ public class HospedagemService {
         return hospedagemRepository.findByEstadoNot(estado);
     }
     
-     //buscar todos por gerente e abilitadas
+     //buscar todos por gerente e habilitadas
     public List buscarGerente(Long gerente_id) {
   
         return hospedagemRepository.buscarHospedagem(gerente_id);

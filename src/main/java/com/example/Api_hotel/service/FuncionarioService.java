@@ -37,7 +37,7 @@ public class FuncionarioService {
 
     public List buscarEstadoAtivo(Funcionario f) {
         Long i = f.getAdministrador_id();
-        String estado = "Abilitado";
+        String estado = "Habilitado";
         return funcionarioRepository.findFuncionarioByEstadoAndAdministrador(estado, i);
 
     }
